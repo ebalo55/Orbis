@@ -1,0 +1,22 @@
+[package]
+name = "example-plugin"
+authors.workspace = true
+edition.workspace = true
+version.workspace = true
+rust-version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+plugin-api = { path = "../plugin-api", default-features = false, features = ["plugin"] }
+sea-orm = {version = "2.0.0-rc", features = [
+    "sqlx-postgres",
+    "runtime-tokio-rustls",
+]}
+tracing = "0.1"
+tokio = {version = "1", features = ["full"]}
+
+[lints]
+workspace = true
+
