@@ -141,7 +141,7 @@ Invoke-WebRequest -Uri https://install.orbis-assets.io/agent.ps1 -UseBasicParsin
 
 ---
 
-## 📚Documentation
+## 📚 Documentation
 
 - **[Plugin System Guide](plugins/API/README.md)** - Complete documentation
 
