@@ -1,0 +1,23 @@
+# Enable additional security flags, only working when building from a linux host
+[target.x86_64-unknown-linux-gnu]
+rustflags = [
+    "-C", "link-arg=-Wl,-zrelro",
+    "-C", "link-arg=-Wl,-znow",
+    "-C", "link-arg=-Wl,-znoexecstack",
+    #"-C", "link-arg=-Wl,-pie",
+    "-C", "link-arg=-Wl,--as-needed",
+    "-C", "link-arg=-Wl,--discard-all"
+]
+
+# Enable additional security flags, only working when building from a linux host
+[target.x86_64-pc-windows-gnu]
+rustflags = [
+    "-C", "link-arg=-Wl,-zrelro",
+    "-C", "link-arg=-Wl,-znow",
+    "-C", "link-arg=-Wl,--nxcompat",
+    "-C", "link-arg=-Wl,--dynamicbase",
+    "-C", "link-arg=-Wl,--high-entropy-va",
+    "-C", "link-arg=-Wl,--no-insert-timestamp",
+    "-C", "link-arg=-Wl,--as-needed",
+    "-C", "link-arg=-Wl,--discard-all"
+]
