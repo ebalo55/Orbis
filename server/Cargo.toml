@@ -6,41 +6,6 @@ version.workspace = true
 rust-version.workspace = true
 readme.workspace = true
 
-[profile.release]
-codegen-units = 1           # Single codegen unit for better optimizations
-debug = false               # No debug info for smaller and faster binary
-lto = true                  # Link Time Optimization for better codegen
-debug-assertions = false    # Disable debug assertions to avoid runtime overhead
-incremental = false         # Disable incremental for clean, reliable release builds
-opt-level = 3               # Max optimization level
-panic = "abort"             # Abort on panic, no unwinding, smaller binary and better security
-overflow-checks = true     # Disable integer overflow checks to enhance performance
-strip = true                # Strip symbols to reduce binary size
-
-# Enable additional security flags, only working when building from a linux host
-[target.x86_64-unknown-linux-gnu]
-rustflags = [
-    "-C", "link-arg=-zrelro",
-    "-C", "link-arg=-znow",
-    "-C", "link-arg=-znoexecstack",
-    "-C", "link-arg=-pie",
-    "-C", "link-arg=--as-needed",
-    "-C", "link-arg=--discard-all"
-]
-
-# Enable additional security flags, only working when building from a linux host
-[target.x86_64-pc-windows-gnu]
-rustflags = [
-    "-C", "link-arg=-zrelro",
-    "-C", "link-arg=-znow",
-    "-C", "link-arg=--nxcompat",
-    "-C", "link-arg=--dynamicbase",
-    "-C", "link-arg=--high-entropy-va",
-    "-C", "link-arg=--no-insert-timestamp",
-    "-C", "link-arg=--as-needed",
-    "-C", "link-arg=--discard-all"
-]
-
 [dependencies]
 sea-orm = {version = "2.0.0-rc", features = [
     "sqlx-postgres",
@@ -63,7 +28,11 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tokio-rustls = { version = "0.26", default-features = false, features = ["ring", "logging", "tls12"] }
 rustls-pemfile = "2"
+plugin-api = { path = "../plugin-api" }
 
 [features]
 default = []
 dev = ["dotenv"]
+
+[lints]
+workspace = true
