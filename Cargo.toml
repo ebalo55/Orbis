@@ -57,7 +57,7 @@ sqlx = { version = "0.8", features = ["runtime-tokio", "tls-rustls", "postgres",
 # Serialization
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-toml = "0.8"
+toml = "0.9"
 
 # CLI and config
 clap = { version = "4", features = ["derive", "env", "string"] }
