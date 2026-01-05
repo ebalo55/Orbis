@@ -82,7 +82,7 @@ sha2 = "0.10"
 wasmtime = "39"
 wasmparser = "0.226"
 seccompiler = "0.4"
-zip = { version = "2", default-features = false, features = ["deflate"] }
+zip = { version = "4", default-features = false, features = ["deflate"] }
 # notify 7.x is required for compatibility with notify-debouncer-mini
 notify = "7"
 
